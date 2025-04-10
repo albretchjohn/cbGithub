@@ -1,0 +1,182 @@
+/* Reset some default styles for better consistency */
+body, h1, button, input {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Include padding and border in element size */
+}
+
+/* Apply some basic styles to the container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #f5f5f5; /* Light gray background */
+}
+
+/* Style the game column */
+.game-column {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #007bff; /* Deep blue */
+}
+
+#imageContainer {
+    border: 2px solid #007bff; /* Deep blue border */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    overflow: hidden; /* Ensure image doesn't overflow the container */
+}
+
+#gameImage {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Style the info column */
+.info-column {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Style the input and buttons */
+input[type="number"] {
+    padding: 10px;
+    width: 100%;
+    border: 2px solid #007bff; /* Deep blue border */
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    background: linear-gradient(to bottom, #4da8da, #007bff); /* Gradient background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(to bottom, #007bff, #4da8da); /* Gradient background on hover */
+}
+
+/* Style the result message */
+#result {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Style the countdown timer */
+#countdown {
+    font-family: 'Roboto', sans-serif;
+    font-size: 48px; /* Increase the font size for a bigger countdown */
+    font-weight: bold;
+    color: #007bff; /* Deep blue */
+    background-color: #f5f5f5; /* Light gray background */
+    border: 2px solid #007bff; /* Deep blue border */
+    border-radius: 50%; /* Rounded shape */
+    width: 100px; /* Adjust the width as needed */
+    height: 100px; /* Adjust the height as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto; /* Center the countdown */
+    animation: pulse 1s infinite alternate; /* Add a pulsing animation */
+}
+
+/* Create a pulsing animation for the countdown */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+/* Style the score display */
+/* Style the score display */
+#score {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #007bff; /* Deep blue */
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgba(0, 123, 255, 0.1); /* Light blue background with transparency */
+    border: 2px solid #007bff; /* Deep blue border */
+    border-radius: 10px;
+    animation: slide-in 1s ease-in-out; /* Add a sliding animation */
+}
+
+/* Create a sliding animation for the score display */
+@keyframes slide-in {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
+/* Style the "Start Game" button */
+#startBtn {
+    padding: 15px 30px; /* Larger button size */
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px; /* Bigger font size */
+    background: linear-gradient(to bottom, #4da8da, #007bff); /* Gradient background */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#startBtn:hover {
+    background: linear-gradient(to bottom, #007bff, #4da8da); /* Gradient background on hover */
+}
+
+/* Style the "Next Image" button */
+#nextBtn {
+    padding: 15px 30px; /* Larger button size */
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px; /* Bigger font size */
+    background: linear-gradient(to bottom, #4da8da, #007bff); /* Gradient background */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer;
+    display: none; /* Initially hidden */
+    transition: background-color 0.3s ease;
+}
+
+#nextBtn:hover {
+    background: linear-gradient(to bottom, #007bff, #4da8da); /* Gradient background on hover */
+}
