@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eyes Test Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style></style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="game-column">
+            <h1>Eyes Test Game</h1>
+            <div id="imageContainer">
+                <img id="gameImage" src="images/10.jpg" alt="Guess the number of eyes">
+            </div>
+        </div>
+        <div class="info-column">
+            <div class="info-row">
+                <div class="countdown">
+                    <div id="countdown">10</div>
+                </div>
+                <button id="startBtn">Start</button>
+            </div>
+            <input type="number" id="guessInput" placeholder="what you see enter here">
+            <br>
+            <br>
+            <button id="submitBtn">Submit</button>
+            <button id="nextBtn" style="display: none;">Next Image</button>
+            <div id="result"></div>
+            <div id="score">Score: 0</div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

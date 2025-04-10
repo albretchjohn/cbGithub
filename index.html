@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+            
+
+#counter1 {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 100vh;
+    padding: 20px;
+}
+
+#visit-count {
+    font-weight: bold;
+    margin-left: 10px;
+}
+        /* Your improved score page CSS goes here */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #007bff; /* Deep blue background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            
+        }
+
+        #introWindow {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            position: absolute;
+            top: 50%;   
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+
+            
+            animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+        h1 {
+            font-size: 32px;
+            color: #fff; /* White text */
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333; /* Dark text color */
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 18px;
+            color: #007bff; /* Deep blue text for instructions */
+            margin: 10px 0;
+        }
+
+        /* Keyframes for fade-in and slide-up animations */
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slide-up {
+            0% {
+                transform: translateY(50px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        body, html {
+    padding: 0;
+    margin: 0;
+    overscroll-behavior: none;
+    overflow: hidden;
+}
+
+.slider {
+    position: fixed;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    color: white;
+    font-family: sans-serif;
+    text-align: right;
+}
+
+.slider input {
+    width: 100%;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+#highlight {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    position: relative;
+}
+
+#highlight::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 234, 0, 0.5); /* Yellowish background color with opacity */
+    border-radius: 5px; /* Rounded corners */
+    z-index: -1; /* Behind the text */
+}
+
+#highlight-text {
+    color: #333; /* Text color */
+    position: relative;
+    z-index: 1; /* Above the background */
+}
+#heading {
+    font-size: 36px;
+    color: #ffea00; /* Yellow text color */
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Text shadow for depth */
+    margin-bottom: 20px;
+    text-align: center; /* Center the text horizontally */
+    position: relative; /* Position for animation */
+}
+
+/* Add a rotating animation */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Apply the animation to the heading */
+#heading::after {
+    content: "\f12e"; /* Unicode for a play icon (you can replace it with any other icon) */
+    font-family: FontAwesome; /* Use a font icon library like FontAwesome */
+    font-size: 44px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0; /* Start with zero opacity */
+    transition: opacity 0.5s ease-in-out; /* Add a smooth fade-in transition */
+}
+
+/* Hover animation */
+#heading:hover::after {
+    opacity: 1; /* On hover, make the icon visible */
+    animation: rotate 2s linear infinite; /* Add a rotating animation on hover */
+}
+
+
+
+    </style>
+    <title>Eyes Test Game</title>
+</head>
+<body>
+    
+    <canvas id="stars"></canvas>
+<div class="slider">
+    <input type="range" min="0.5" max="15" value="2" step="0.5">
+</div>
+
+    <div id="introWindow">
+        
+        <h1 id="heading">Welcome to the Color Blindness Test Game
+            
+        </h1>
+        <p>Instructions:</p>
+        <ul>
+            <li>This test is designed to check your color vision.</li>
+            <li>Click on the buttons that match the color shown in the center of the screen.</li>
+            <li>Score points for each correct answer.</li>
+            <li>Try to achieve the highest score possible.</li>
+        </ul>
+        <p>Why This Test is Important:</p>
+        <p>Color blindness can impact your daily life, so it's important to be aware of it.</p>
+        <p>Motivation for This Project:</p>
+        <p>We aim to raise awareness about color blindness and its effects on people's lives.</p>
+        <p id="highlight">
+            <span id="highlight-text">The game will start in 10 seconds. Good luck!</span>
+        </p>
+      
+<div class="website-counter">
+                <span id="visit-count"></span>
+            </div>
+            </div>
+        </div>
+           
+
+    <script>
+        // Code to close the intro window after 10 seconds and start the game
+        setTimeout(function () {
+            const introWindow = document.getElementById('introWindow');
+            introWindow.style.animation = 'slide-down 1s ease-out'; // Slide down animation before hiding
+            setTimeout(function () {
+                introWindow.style.display = 'none'; // Hide the intro window
+                // Add code here to start the game or navigate to the game page
+                window.location.href = 'index1.html'; // 
+            }, 1000); // 1000 milliseconds = 1 second
+        }, 10000); // 10000 milliseconds = 10 seconds
+
+        const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+const slider = document.querySelector(".slider input");
+
+let screen, stars, params = {speed: 2, number: 300, extinction: 4};
+
+setupStars();
+updateStars();
+
+slider.oninput = function () {
+    params.speed = this.value;
+};
+
+// update stars on resize to keep the thing centered
+window.onresize = function () {
+    setupStars();
+};
+
+// star constructor
+function Star() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.z = Math.random() * canvas.width;
+
+    this.move = function () {
+        this.z -= params.speed;
+        if (this.z <= 0) {
+            this.z = canvas.width;
+        }
+    };
+
+    this.show = function () {
+        let x, y, rad, opacity;
+        x = (this.x - screen.c[0]) * (canvas.width / this.z);
+        x = x + screen.c[0];
+        y = (this.y - screen.c[1]) * (canvas.width / this.z);
+        y = y + screen.c[1];
+        rad = canvas.width / this.z;
+        opacity = (rad > params.extinction) ? 1.5 * (2 - rad / params.extinction) : 1;
+
+        ctx.beginPath();
+        ctx.fillStyle = "rgba(255, 255, 255, " + opacity + ")";
+        ctx.arc(x, y, rad, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+// setup <canvas>, create all the starts
+function setupStars() {
+    screen = {
+        w: window.innerWidth,
+        h: window.innerHeight,
+        c: [window.innerWidth * 0.5, window.innerHeight * 0.5]
+    };
+    window.cancelAnimationFrame(updateStars);
+    canvas.width = screen.w;
+    canvas.height = screen.h;
+    stars = [];
+    for (let i = 0; i < params.number; i++) {
+        stars[i] = new Star();
+    }
+}
+
+function updateStars() {
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(function (s) {
+        s.show();
+        s.move();
+    });
+    window.requestAnimationFrame(updateStars);
+}
+ 
+var counterContainer = document.querySelector(".website-counter");
+var resetButton = document.querySelector("#reset");
+var visitCount = localStorage.getItem("page_view");
+
+// Check if page_view entry is present
+if (visitCount) {
+  visitCount = Number(visitCount) + 1;
+  localStorage.setItem("page_view", visitCount);
+} else {
+  visitCount = 1;
+  localStorage.setItem("page_view", 1);
+}
+counterContainer.innerHTML = visitCount;
+
+// Adding onClick event listener
+resetButton.addEventListener("click", () => {
+  visitCount = 1;
+  localStorage.setItem("page_view", 1);
+  counterContainer.innerHTML = visitCount;
+});
+</script>
+
+
+</body>
+</html>

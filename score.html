@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Your score page CSS goes here */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5; /* Light gray background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #scorePage {
+            text-align: center;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            animation: fade-in 1s ease-out; /* Fade-in animation */
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #007bff; /* Deep blue */
+            margin-bottom: 20px;
+        }
+
+        #scoreMessage {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* Keyframes for fade-in animation */
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        #scoreDisplay {
+            font-size: 24px; /* Adjust the font size as needed */
+            font-weight: bold;
+            color: #007bff; /* Text color (deep blue) */
+            margin-top: 20px;
+        }
+
+        #retryButton {
+            font-size: 18px; /* Adjust the font size as needed */
+            padding: 10px 20px; /* Adjust the padding for button size */
+            background-color: #007bff; /* Button background color (deep blue) */
+            color: #fff; /* Text color (white) */
+            border: none;
+            border-radius: 8px; /* Rounded corners */
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out; /* Smooth background color transition */
+        }
+
+        #retryButton:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        #retryButton:focus {
+            outline: none; /* Remove outline on focus for better appearance */
+        }
+ #eyesTipsButton {
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            margin-top: 20px;
+        }
+
+        #eyesTipsButton:hover {
+            background-color: #0056b3;
+        }
+
+        #eyesTipsButton:focus {
+            outline: none;
+        }
+
+        /* Add an attractive animation when the button is clicked */
+        #eyesTipsButton.clicked {
+            animation: pulse 1s ease-in-out;
+        }
+
+        /* Keyframes for the pulse animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+    <title>Eyes Test Score</title>
+</head>
+<body>
+    <div id="scorePage">
+        <h1>Your Score is :</h1>
+        <div id="scoreMessage">
+            <!-- Score-specific message will be displayed here -->
+        </div>
+        
+        <div id="scoreDisplay">
+            <!-- Player's score will be displayed here -->
+        </div>
+    
+        <button id="retryButton">Retry</button>
+        <br>
+        <button id="eyesTipsButton">Eyes Tips</button>
+
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const scoreMessage = document.getElementById('scoreMessage');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const retryButton = document.getElementById('retryButton');
+            const urlParams = new URLSearchParams(window.location.search);
+            const score = parseInt(urlParams.get('score'));
+            console.log('Score:', score);
+
+            if (!isNaN(score)) {
+                if (score < 8) {
+                    scoreMessage.textContent = "You scored less than 6. You might have color blindness issues. Consider consulting an eye specialist for a checkup.";
+                } else if (score === 9) {
+                    scoreMessage.textContent = "Congratulations! You scored 8 out of 10. You have a good score. To maintain good eyesight, remember to eat a balanced diet rich in fruits and vegetables.";
+                } else if (score === 10) {
+                    scoreMessage.textContent = "Congratulations! You scored a perfect 10. You have great eyesight! Keep up the good work and continue to prioritize eye health.";
+                } else {
+                    scoreMessage.textContent = "Congratulations! You have a great score! Remember to protect your eyes from prolonged screen time and UV radiation.";
+                }
+
+                scoreDisplay.textContent = `Your Score: ${score} out of ${totalImages}`;
+                
+            } else {
+                scoreMessage.textContent = "Invalid score. Please try again.";
+            }
+
+            retryButton.addEventListener('click', () => {
+                window.location.href = 'index1.html';
+            });
+        });
+
+        const eyesTipsButton = document.getElementById('eyesTipsButton');
+        eyesTipsButton.addEventListener('click', () => {
+            // Redirect to "eyes.html" when the button is clicked
+            window.location.href = 'eyestips.html';
+        });
+
+        setTimeout(() => {
+            window.location.href = 'eyestips.html';
+        }, 100000);
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
