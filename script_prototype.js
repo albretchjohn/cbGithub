@@ -7,7 +7,11 @@ const countdown = document.getElementById('countdown');
 const nextBtn = document.getElementById('nextBtn');
 const score = document.getElementById('score');
 
-
+let images = [
+    'images/10.jpg', 'images/8.jpg', 'images/15.jpg', 'images/6.webp', 'images/7.webp',
+    'images/45.webp', 'images/26.webp', 'images/74.png', 'images/8.jpg', 'images/15.jpg',
+    'images/96.jpg'
+]; // Add your image URLs here
 
 
 let currentImage = 0;
@@ -15,7 +19,7 @@ const correctAnswers = [];
 let correctGuesses = 0;
 let incorrectGuesses = 0;
 let gameInProgress = false;
-const totalImages = 10;
+const totalImages = images.length;
 let countdownTimer; // Declare a variable to hold the countdown timer
 //let number = 0;
 
@@ -111,13 +115,11 @@ function checkGuess() {
 
     if (userGuess === correctAnswer) {
         result.textContent = 'Correct!';
-        result.classList.remove('d-none', 'alert-danger');
-        result.classList.add('alert-success');
+        result.style.color = 'green';
         correctGuesses++;
     } else {
         result.textContent = 'Wrong!';
-        result.classList.remove('d-none', 'alert-success');
-        result.classList.add('alert-danger');
+        result.style.color = 'red';
         incorrectGuesses++;
     }
 
