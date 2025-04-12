@@ -30,7 +30,7 @@ async function generatePlate() {
     imageIndex = correctAnswers.length;
     getCorrectAnswer(number, imageIndex);
 
-    const response = await fetch('https://cbsite-e23n.onrender.com', {
+    const response = await fetch('https://cbsite-e23n.onrender.com/generate_plate', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
