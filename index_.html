@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Blindness Test Game</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background-color: #000;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    #stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    #introWindow {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+      text-align: center;
+    }
+
+    .slider {
+      position: fixed;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      z-index: 2;
+    }
+
+    .website-counter {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    #heading {
+      color: #ffc107;
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 6px #000;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="stars"></canvas>
+
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <div id="introWindow">
+      <h1 id="heading">Welcome to the Color Blindness Test Game</h1>
+      <p class="lead">Instructions:</p>
+      <ul class="list-group list-group-flush text-start mb-4">
+        <li class="list-group-item">🧠 Test your color vision by identifying numbers in colored patterns.</li>
+        <li class="list-group-item">🎯 Click the matching button that shows the number you see.</li>
+        <li class="list-group-item">🏆 Earn points for each correct answer.</li>
+        <li class="list-group-item">🔥 Aim for the highest score!</li>
+      </ul>
+      <p class="fw-semibold">Why This Test Matters:</p>
+      <p class="text-muted">Color blindness affects many daily activities—being aware of it is important.</p>
+      <p class="fw-semibold">Motivation for This Project:</p>
+      <p class="text-muted">We created this game to raise awareness and help others understand color vision challenges.</p>
+
+      <div class="mt-4 d-flex flex-column gap-3">
+        <a href="indexCurrentBlueGreen.html" class="btn btn-primary btn-lg fw-bold">
+          <i class="fas fa-eye me-2"></i>Blue-Yellow Test
+        </a>
+        <a href="indexCurrent.html" class="btn btn-danger btn-lg fw-bold">
+          <i class="fas fa-eye me-2"></i>Red-Green Test
+        </a>
+      </div>
+
+      <div class="website-counter mt-3">
+        Visits: <span id="visit-count"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="slider text-white">
+    <label for="speedRange" class="form-label">Speed</label>
+    <input type="range" id="speedRange" min="0.5" max="15" value="2" step="0.5" class="form-range" />
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d");
+    const slider = document.getElementById("speedRange");
+
+    let screen, stars, params = { speed: 2, number: 300, extinction: 4 };
+
+    slider.oninput = () => params.speed = slider.value;
+    window.onresize = setupStars;
+
+    function Star() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.z = Math.random() * canvas.width;
+
+      this.move = () => {
+        this.z -= params.speed;
+        if (this.z <= 0) this.z = canvas.width;
+      };
+
+      this.show = () => {
+        let x = (this.x - screen.c[0]) * (canvas.width / this.z) + screen.c[0];
+        let y = (this.y - screen.c[1]) * (canvas.width / this.z) + screen.c[1];
+        let rad = canvas.width / this.z;
+        let opacity = rad > params.extinction ? 1.5 * (2 - rad / params.extinction) : 1;
+
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255,255,255,${opacity})`;
+        ctx.arc(x, y, rad, 0, Math.PI * 2);
+        ctx.fill();
+      };
+    }
+
+    function setupStars() {
+      screen = {
+        w: window.innerWidth,
+        h: window.innerHeight,
+        c: [window.innerWidth * 0.5, window.innerHeight * 0.5]
+      };
+      canvas.width = screen.w;
+      canvas.height = screen.h;
+      stars = Array.from({ length: params.number }, () => new Star());
+    }
+
+    function updateStars() {
+      ctx.fillStyle = "black";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => { s.show(); s.move(); });
+      requestAnimationFrame(updateStars);
+    }
+
+    setupStars();
+    updateStars();
+
+    // Visit counter
+    const counterContainer = document.getElementById("visit-count");
+    let visitCount = localStorage.getItem("page_view");
+
+    if (visitCount) {
+      visitCount = Number(visitCount) + 1;
+    } else {
+      visitCount = 1;
+    }
+    localStorage.setItem("page_view", visitCount);
+    counterContainer.textContent = visitCount;
+  </script>
+</body>
+</html>

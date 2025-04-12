@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eyes Test Game</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #f1f4f9, #dff1ff);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .game-wrapper {
+      max-width: 1100px;
+      width: 100%;
+    }
+    #gameImage {
+      max-height: 500px;
+      width: 100%;
+      object-fit: contain;
+    }
+    #countdown {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    #result {
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container game-wrapper">
+  <div class="card shadow-lg rounded-4">
+    <div class="row g-0">
+
+      <!-- Wider Image Column -->
+      <div class="col-md-7 bg-light d-flex flex-column align-items-center justify-content-center p-4">
+        <h2 class="text-center mb-4">Eyes Test Game 👁️</h2>
+        <div id="imageContainer" class="w-100 text-center">
+          <img id="gameImage" src="" alt="Guess the number" class="img-fluid rounded shadow-sm">
+        </div>
+      </div>
+
+      <!-- Control Column -->
+      <div class="col-md-5 p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div id="countdown" class="text-danger">10</div>
+          <button id="startBtn" class="btn btn-success">Start</button>
+        </div>
+
+        <div class="mb-3">
+          <input type="number" id="guessInput" class="form-control form-control-lg" placeholder="Enter the number you see">
+        </div>
+
+        <div class="d-grid gap-2 mb-3">
+          <button id="submitBtn" class="btn btn-primary btn-lg">Submit</button>
+        </div>
+
+        <!-- Result (Initially Hidden) -->
+        <div id="result" class="alert d-none" role="alert"></div>
+
+        <div id="score" class="mt-3 fs-5 text-secondary fw-bold">Score: 0</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="scriptBlue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
