@@ -71,7 +71,7 @@ async function loadNextImage() {
     //gameImage.src = images[currentImage];
     guessInput.value = '';
     result.textContent = '';
-    countdown.textContent = '10';
+    countdown.textContent = '5';
     countdown.style.color = 'black';
 
     // Slow down the countdown timer by changing the interval to 1000 milliseconds (1 second)
