@@ -153,10 +153,10 @@ function updateScore() {
 }
 
 async function nextImage() {
-    // currentImage++;
-    if (currentImage <= 10) {
-        currentImage++;
+    
+    if (currentImage < 10) {
         await loadNextImage();
+        currentImage++;
         submitBtn.disabled = false;
         //nextBtn.style.display = 'none';
     } else {
