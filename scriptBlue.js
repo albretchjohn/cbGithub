@@ -152,8 +152,9 @@ function updateScore() {
 }
 
 async function nextImage() {
-    currentImage++;
+    // currentImage++;
     if (currentImage <= 10) {
+        currentImage++;
         await loadNextImage();
         submitBtn.disabled = false;
         //nextBtn.style.display = 'none';
