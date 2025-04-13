@@ -58,6 +58,7 @@ async function generatePlate() {
 
 
 function startGame() {
+    document.getElementById("gameImage").alt = "Loading Image";
     startBtn.disabled = true;
     gameInProgress = true;
     loadNextImage();
